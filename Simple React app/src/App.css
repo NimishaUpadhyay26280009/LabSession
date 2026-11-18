@@ -1,0 +1,23 @@
+ 
+body { 
+    background-color: #f2f2f2; 
+    font-family: Arial, sans-serif; 
+} 
+ 
+.card { 
+    max-width: 450px; 
+    margin: auto; 
+    border-radius: 10px; 
+} 
+ 
+h2 { 
+    color: #333; 
+} 
+ 
+.form-label { 
+    font-weight: bold; 
+} 
+ 
+button { 
+    cursor: pointer; 
+}

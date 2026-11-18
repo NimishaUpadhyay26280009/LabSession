@@ -1,0 +1,178 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+    <title>User Registration Form</title> 
+ 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f2f2f2; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        } 
+ 
+        .container { 
+            background: white; 
+            padding: 30px; 
+            width: 350px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px #ccc; 
+        } 
+ 
+        h2 { 
+            text-align: center; 
+            color: #333; 
+        } 
+ 
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 8px 0; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box; 
+        } 
+ 
+        button { 
+            width: 100%; 
+ 
+            padding: 12px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        } 
+ 
+        button:hover { 
+            background-color: #0056b3; 
+        } 
+ 
+        .error { 
+            color: red; 
+            font-size: 13px; 
+        } 
+ 
+        #message { 
+            text-align: center; 
+            margin-top: 15px; 
+            font-weight: bold; 
+        } 
+    </style> 
+</head> 
+ 
+<body> 
+ 
+    <div class="container"> 
+ 
+        <h2>User Registration</h2> 
+ 
+        <form id="registrationForm"> 
+ 
+            <input type="text" id="name" placeholder="Enter Name"> 
+            <span class="error" id="nameError"></span> 
+ 
+            <input type="text" id="email" placeholder="Enter Email"> 
+            <span class="error" id="emailError"></span> 
+ 
+            <input type="password" id="password" placeholder="Enter Password"> 
+            <span class="error" id="passwordError"></span> 
+ 
+            <input type="password" id="confirmPassword" 
+                   placeholder="Confirm Password"> 
+            <span class="error" id="confirmError"></span> 
+ 
+            <button type="submit">Register</button> 
+ 
+        </form> 
+ 
+ 
+        <p id="message"></p> 
+ 
+    </div> 
+ 
+    <script> 
+ 
+        let form = document.getElementById("registrationForm"); 
+ 
+        form.addEventListener("submit", function(event) { 
+ 
+            event.preventDefault(); 
+ 
+            let name = document.getElementById("name").value.trim(); 
+            let email = document.getElementById("email").value.trim(); 
+            let password = document.getElementById("password").value; 
+            let confirmPassword = document.getElementById("confirmPassword").value; 
+ 
+            document.querySelectorAll(".error").forEach(function(element) { 
+                element.innerText = ""; 
+            }); 
+ 
+            document.getElementById("message").innerText = ""; 
+ 
+            let valid = true; 
+ 
+            if (name === "") { 
+                document.getElementById("nameError").innerText = 
+                    "Name is required"; 
+                valid = false; 
+            } 
+ 
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+ 
+            if (email === "") { 
+                document.getElementById("emailError").innerText = 
+                    "Email is required"; 
+                valid = false; 
+            } 
+            else if (!emailPattern.test(email)) { 
+                document.getElementById("emailError").innerText = 
+                    "Enter a valid email"; 
+                valid = false; 
+            } 
+ 
+            if (password === "") { 
+                document.getElementById("passwordError").innerText = 
+                    "Password is required"; 
+                valid = false; 
+            } 
+ 
+            else if (password.length < 8) { 
+                document.getElementById("passwordError").innerText = 
+                    "Password must be at least 8 characters"; 
+                valid = false; 
+            } 
+ 
+            if (confirmPassword === "") { 
+                document.getElementById("confirmError").innerText = 
+                    "Please confirm your password"; 
+                valid = false; 
+            } 
+            else if (password !== confirmPassword) { 
+                document.getElementById("confirmError").innerText = 
+                    "Passwords do not match"; 
+                valid = false; 
+            } 
+ 
+            if (valid) { 
+                document.getElementById("message").style.color = "green"; 
+ 
+                document.getElementById("message").innerText = 
+                    "Registration Successful!"; 
+ 
+                form.reset(); 
+            } 
+ 
+        }); 
+ 
+    </script> 
+ 
+</body> 
+</html>
